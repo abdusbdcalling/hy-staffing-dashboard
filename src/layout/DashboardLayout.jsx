@@ -19,13 +19,15 @@ function DashboardLayout() {
 
   return (
     <>
-      <DashboardNavbar toggleSidebar={toggleSidebar} />
-      {isSidebarOpen && <DashboardSidebar />}
-      <main>
-        <div className="p-6 sm:ml-64 mt-14">
-          <Outlet />
-        </div>
-      </main>
+      <div className=" bg-gray-100 w-full h-screen">
+        <DashboardNavbar toggleSidebar={toggleSidebar} />
+        {isSidebarOpen && <DashboardSidebar />}
+        <main>
+          <div className="p-6 sm:ml-64 mt-14">
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </>
   );
 }

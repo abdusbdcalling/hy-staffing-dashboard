@@ -25,7 +25,10 @@ const Profile = () => {
 
   return (
     <>
-      <div className="w-full h-s mx-auto p-4">
+      <div>
+        <h1 className="sm:text-2xl sm:mt-0 mt-2 mb-4 text-xl font-semibold text-gray-600">
+          Profile
+        </h1>
         {isEditing ? (
           <ProfileEdit profile={profile} onSave={handleSave} onCancel={handleEditToggle} />
         ) : (
