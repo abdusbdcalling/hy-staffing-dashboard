@@ -4,6 +4,7 @@ import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Profile from '../pages/Profile/Profile';
+import ChangePassword from '../pages/Password/ChangePassword';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/profile',
+        path: '/dashboard/profile',
         element: <Profile />,
+      },
+      {
+        path: '/dashboard/change-password',
+        element: <ChangePassword />,
       },
     ],
   },
