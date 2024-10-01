@@ -3,9 +3,8 @@ import Button from './Button';
 const ProfileView = ({ profile, onEdit }) => {
   return (
     <div className="p-4 bg-white shadow rounded-lg">
-      <h2 className="text-2xl text-center justify-center font-semibold mb-4">Profile</h2>
-      <div className="flex mx-auto gap-[200px] justify-center items-center p-10">
-        <div>
+      <div className="sm:flex mx-auto gap-[200px] justify-center items-center p-10">
+        <div className="sm:mb-0 mb-10">
           <img src={profile.avatar} className=" rounded-full" alt="profile image" />
         </div>
         <div>
