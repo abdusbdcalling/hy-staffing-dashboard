@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import useDeviceSize from '../../hooks/useDeviceSize';
-import { useEffect } from 'react';
 
 export default function SettingsNavbar({ toggleSidebar }) {
   const isMobile = useDeviceSize();

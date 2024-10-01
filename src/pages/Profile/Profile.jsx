@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import ProfileEdit from '../../components/profile/ProfileEdit';
 import ProfileView from '../../components/profile/ProfileView';
-import { Avatar } from 'flowbite-react';
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
