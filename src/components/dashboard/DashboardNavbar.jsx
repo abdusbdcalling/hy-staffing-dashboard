@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Logo from '../common/Logo';
 import { Link } from 'react-router-dom';
 import { RiMenuAddFill } from 'react-icons/ri';
+import { FaUserCircle } from 'react-icons/fa';
 
 function DashboardNavbar({ toggleSidebar }) {
   const [isProfileOpen, setProfileOpen] = useState(false);
@@ -28,12 +29,8 @@ function DashboardNavbar({ toggleSidebar }) {
           <div className="flex items-center">
             <div className="flex items-center ms-3">
               <div>
-                <button className="flex text-sm rounded-ful" onClick={handleDropDown}>
-                  <img
-                    className="w-8 h-8 rounded-full"
-                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                    alt="user photo"
-                  />
+                <button className="flex text-2xl rounded-ful" onClick={handleDropDown}>
+                  <FaUserCircle />
                 </button>
               </div>
               {isProfileOpen && (

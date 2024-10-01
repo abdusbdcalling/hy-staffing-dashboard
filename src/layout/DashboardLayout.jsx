@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import DasboardSidebar from '../components/dashboard/DasboardSidebar';
+import DashboardSidebar from '../components/dashboard/DashboardSidebar';
 import { Outlet } from 'react-router-dom';
 import DashboardNavbar from '../components/dashboard/DashboardNavbar';
 import useDeviceSize from '../hooks/useDeviceSize';
@@ -20,7 +20,7 @@ function DashboardLayout() {
   return (
     <>
       <DashboardNavbar toggleSidebar={toggleSidebar} />
-      {isSidebarOpen && <DasboardSidebar />}
+      {isSidebarOpen && <DashboardSidebar />}
       <main>
         <div className="p-6 sm:ml-64 mt-14">
           <Outlet />

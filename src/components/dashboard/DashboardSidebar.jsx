@@ -5,7 +5,7 @@ import { MdLogin } from 'react-icons/md';
 import { AiOutlineForm } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
-function DasboardSidebar() {
+function DashboardSidebar() {
   return (
     <aside className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -61,4 +61,4 @@ function DasboardSidebar() {
   );
 }
 
-export default DasboardSidebar;
+export default DashboardSidebar;
