@@ -6,12 +6,21 @@ import { AiOutlineForm } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import SettingsNavbar from './SettingsNavbar';
+import { MdWorkOutline } from 'react-icons/md';
+import JobsNavbar from './JobsNavbar';
 
 function DashboardSidebar({ toggleSidebar }) {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
+  const [isJobsOpen, setJobsOpen] = useState(false);
 
   const toggleSettings = () => {
     setSettingsOpen(!isSettingsOpen);
+    setJobsOpen(false);
+  };
+
+  const toggleJobs = () => {
+    setJobsOpen(!isJobsOpen);
+    setSettingsOpen(false);
   };
 
   function handleOnClick() {
@@ -44,6 +53,18 @@ function DashboardSidebar({ toggleSidebar }) {
               <FaRegUser />
               <span className="ms-3">Profile</span>
             </Link>
+          </li>
+          <li>
+            <button
+              className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              onClick={toggleJobs}
+            >
+              <MdWorkOutline />
+              <span className="ms-3">Jobs</span>
+            </button>
+            {isJobsOpen && (
+              <JobsNavbar toggleSettings={toggleSettings} toggleSidebar={toggleSidebar} />
+            )}
           </li>
           <li>
             <button

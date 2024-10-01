@@ -5,6 +5,8 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Profile from '../pages/Profile/Profile';
 import ChangePassword from '../pages/Password/ChangePassword';
+import JobCreate from '../pages/Jobs/JobCreate';
+import AllJobs from '../pages/Jobs/AllJobs';
 
 const router = createBrowserRouter([
   {
@@ -20,8 +22,16 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: '/dashboard/change-password',
+        path: '/settings/change-password',
         element: <ChangePassword />,
+      },
+      {
+        path: '/jobs/create',
+        element: <JobCreate />,
+      },
+      {
+        path: '/jobs/read',
+        element: <AllJobs />,
       },
     ],
   },

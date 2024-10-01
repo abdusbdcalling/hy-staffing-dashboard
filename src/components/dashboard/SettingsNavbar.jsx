@@ -16,7 +16,7 @@ export default function SettingsNavbar({ toggleSidebar }) {
       <ul className="pl-6 mt-2 space-y-2">
         <li>
           <Link
-            to="/dashboard/change-password"
+            to="/settings/change-password"
             className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             onClick={handleOnClick}
           >

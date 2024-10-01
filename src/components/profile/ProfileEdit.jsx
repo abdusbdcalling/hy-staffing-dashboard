@@ -71,7 +71,9 @@ const ProfileEdit = ({ profile, onSave, onCancel }) => {
           />
         </div>
         <div className="flex space-x-4">
-          <Button type="submit">Save</Button>
+          <Button type="submit" className="bg-green-700">
+            Save
+          </Button>
           <Button type="button" onClick={onCancel} className="bg-red-500 hover:bg-red-700">
             Cancel
           </Button>
