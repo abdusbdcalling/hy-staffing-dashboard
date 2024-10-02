@@ -1,27 +1,39 @@
 import Button from './Button';
+import { FaRegUser } from 'react-icons/fa6';
+import { IoCallOutline } from 'react-icons/io5';
+import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { MdWorkOutline } from 'react-icons/md';
 
 const ProfileView = ({ profile, onEdit }) => {
   return (
-    <div className="p-4 bg-white shadow rounded-lg">
-      <div className="sm:flex mx-auto gap-[200px] justify-center items-center p-10">
-        <div className="sm:mb-0 mb-10">
-          <img src={profile.avatar} className=" rounded-full" alt="profile image" />
+    <div className="p-4 sm:max-w-4xl bg-white shadow rounded-[8px]">
+      <div className="sm:flex gap-[60px] justify-start items-center p-10 grid grid-cols-2 divide-x-2">
+        <div className="sm:mb-0 mb-10 ">
+          <img
+            src={profile.avatar}
+            className="w-[200px] h-[200px] rounded-full "
+            alt="profile image"
+          />
         </div>
-        <div>
-          <p>
-            <strong>Name:</strong> {profile.name}
-          </p>
-          <p>
-            <strong>Mobile:</strong> {profile.mobile}
-          </p>
-          <p>
-            <strong>Email:</strong> {profile.email}
-          </p>
-          <p>
-            <strong>Bio:</strong> {profile.bio}
-          </p>
+        <div className="pl-[60px]">
+          <div className="flex gap-2 items-center text-lg">
+            <FaRegUser />
+            <p>{profile.name}</p>
+          </div>
+          <div className="flex gap-2 items-center text-lg">
+            <IoCallOutline />
+            <p>{profile.mobile}</p>
+          </div>
+          <div className="flex gap-2 items-center text-lg">
+            <MdOutlineAlternateEmail />
+            <p>{profile.email}</p>
+          </div>
+          <div className="flex gap-2 items-center text-lg">
+            <MdWorkOutline />
+            <p>{profile.bio}</p>
+          </div>
 
-          <Button onClick={onEdit} className="mt-4">
+          <Button onClick={onEdit} className="mt-4 bg-[#E5383B] text-lg">
             Edit Profile
           </Button>
         </div>

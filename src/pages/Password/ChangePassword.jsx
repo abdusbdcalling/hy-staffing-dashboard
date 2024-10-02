@@ -31,10 +31,10 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <h2 className="sm:text-2xl sm:mt-0 mt-2 text-xl font-semibold text-gray-600">
-        Change Password
-      </h2>
       <div className="p-10 mt-10 sm:max-w-xl w-full mx-auto bg-white shadow rounded-lg">
+        <h2 className="sm:text-2xl sm:mt-0 mt-2 mb-4 text-center text-xl font-semibold text-gray-600">
+          Change Password
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="currentPassword">
@@ -79,7 +79,7 @@ const ChangePassword = () => {
           {success && <p className="text-green-500">{success}</p>}
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700"
+            className="w-full py-2 px-4 bg-[#E5383B] text-white font-bold rounded-md hover:bg-blue-700"
           >
             Change Password
           </button>
