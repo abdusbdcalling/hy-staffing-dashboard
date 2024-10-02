@@ -20,7 +20,7 @@ const ProfileEdit = ({ profile, onSave, onCancel }) => {
 
   return (
     <div className="p-4 bg-white shadow rounded-lg">
-      <h2 className="text-2xl font-semibold mb-4">Edit Profile</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-[#5A5C5F]">Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">Name</label>
@@ -71,6 +71,7 @@ const ProfileEdit = ({ profile, onSave, onCancel }) => {
           />
         </div>
         <div className="flex space-x-4">
+          {/* Custom button componet*/}
           <Button type="submit" className="bg-green-600">
             Save
           </Button>

@@ -15,27 +15,30 @@ const ProfileView = ({ profile, onEdit }) => {
             alt="profile image"
           />
         </div>
-        <div className="pl-[60px]">
-          <div className="flex gap-2 items-center text-lg">
-            <FaRegUser />
-            <p>{profile.name}</p>
+        <div className="pl-[60px] ">
+          <div className="space-y-1">
+            <div className="flex gap-2 items-center text-lg">
+              <FaRegUser />
+              <p>{profile.name}</p>
+            </div>
+            <div className="flex gap-2 items-center text-lg">
+              <IoCallOutline />
+              <p>{profile.mobile}</p>
+            </div>
+            <div className="flex gap-2 items-center text-lg">
+              <MdOutlineAlternateEmail />
+              <p>{profile.email}</p>
+            </div>
+            <div className="flex gap-2 items-center text-lg">
+              <MdWorkOutline />
+              <p>{profile.bio}</p>
+            </div>
           </div>
-          <div className="flex gap-2 items-center text-lg">
-            <IoCallOutline />
-            <p>{profile.mobile}</p>
+          <div className="mt-4">
+            <Button onClick={onEdit} className="bg-[#E5383B] text-lg">
+              Edit Profile
+            </Button>
           </div>
-          <div className="flex gap-2 items-center text-lg">
-            <MdOutlineAlternateEmail />
-            <p>{profile.email}</p>
-          </div>
-          <div className="flex gap-2 items-center text-lg">
-            <MdWorkOutline />
-            <p>{profile.bio}</p>
-          </div>
-
-          <Button onClick={onEdit} className="mt-4 bg-[#E5383B] text-lg">
-            Edit Profile
-          </Button>
         </div>
       </div>
     </div>

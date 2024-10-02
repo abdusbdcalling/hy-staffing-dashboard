@@ -3,6 +3,7 @@ import ProfileEdit from '../../components/profile/ProfileEdit';
 import ProfileView from '../../components/profile/ProfileView';
 
 const Profile = () => {
+  // State
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
     name: 'John Doe',
@@ -13,10 +14,12 @@ const Profile = () => {
       'https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1727654400&semt=ais_hybrid',
   });
 
+  // Handle Edit toggle function
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
 
+  // Habdle profile save function
   const handleSave = (updatedProfile) => {
     setProfile(updatedProfile);
     setIsEditing(false);
