@@ -1,57 +1,29 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import JobsTable from '../../components/jobs/JobsTable';
+import { jobListRequest } from '../../apiRequest/jobApiRequest';
+import { removeItem } from '../../utils/modals/removeItem';
+import toast from 'react-hot-toast';
 
 const AllJobs = () => {
-  const initialState = [
-    {
-      _id: '111111',
-      title: 'Jr. MERN Stack Developer',
-      company: 'bdCalling IT Ltd',
-      location: 'Banasree, Rampura, Dhaka',
-    },
-    {
-      _id: '111111',
-      title: 'Jr. MERN Stack Developer',
-      company: 'bdCalling IT Ltd',
-      location: 'Banasree, Rampura, Dhaka',
-    },
-    {
-      _id: '111111',
-      title: 'Jr. MERN Stack Developer',
-      company: 'bdCalling IT Ltd',
-      location: 'Banasree, Rampura, Dhaka',
-    },
-  ];
 
-  const [jobs, setJobs] = useState(initialState);
-  console.log(jobs);
+  const [jobs, setJobs] = useState([]);
   const [error, setError] = useState('');
 
-  //   useEffect(() => {
-  //     fetchJobs();
-  //   }, []);
-
-  //   const fetchJobs = async () => {
-  //     try {
-  //       const response = await axios.get('/api/jobs');
-  //       setJobs(response.data);
-  //     } catch (error) {
-  //       setError('Failed to fetch jobs.');
-  //     }
-  //   };
+    useEffect(() => {
+      (async()=>{
+            let res = await jobListRequest(1,10);
+            setJobs(res);
+      })()
+    }, []);
 
   const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(`/api/jobs/${id}`);
-      if (response.status === 200) {
-        setJobs(jobs.filter((job) => job._id !== id));
-      } else {
-        setError('Failed to delete job.');
-      }
-    } catch (error) {
-      setError('Failed to delete job.');
+    let res =await removeItem(id);
+    if(res){
+     let data = await jobListRequest(1,10);
+     setJobs(data);
+    }
+    else{
+      toast.error("Something went wrong!");
     }
   };
 
@@ -74,7 +46,7 @@ const AllJobs = () => {
           <tbody className="text-gray-600 text-sm font-light">
             {Array.isArray(jobs) &&
               jobs.map((job, index) => (
-                <JobsTable key={job._id} job={job} index={index} handleDelete={handleDelete} />
+                <JobsTable key={index} job={job} index={index} handleDelete={handleDelete} />
               ))}
           </tbody>
         </table>

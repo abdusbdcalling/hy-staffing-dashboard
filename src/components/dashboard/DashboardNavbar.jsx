@@ -12,7 +12,7 @@ function DashboardNavbar({ toggleSidebar }) {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full sm:px-4 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <nav className="fixed top-0 z-50 w-full sm:px-4 bg-[#F8F9FA] border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start rtl:justify-end">
