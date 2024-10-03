@@ -7,6 +7,7 @@ import Profile from '../pages/Profile/Profile';
 import ChangePassword from '../pages/Password/ChangePassword';
 import JobCreate from '../pages/Jobs/JobCreate';
 import AllJobs from '../pages/Jobs/AllJobs';
+import Users from '../pages/Users/Users';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/jobs/read',
         element: <AllJobs />,
+      },
+      {
+        path: '/users',
+        element: <Users />,
       },
     ],
   },
