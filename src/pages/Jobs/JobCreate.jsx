@@ -1,37 +1,29 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { createJobRequest } from "../../apiRequest/jobApiRequest";
+import { errorMsg, successMsg } from "../../utils/helper";
+import { useNavigate } from "react-router-dom";
 
-const JobCreate = ({ onSubmit }) => {
-  // All state
-  const [title, setTitle] = useState('');
-  const [company, setCompany] = useState('');
-  const [location, setLocation] = useState('');
-  const [jobType, setJobType] = useState('');
-  const [deadline, setDeadline] = useState('');
-  const [experience, setExperience] = useState('');
-  const [error, setError] = useState('');
+const JobCreate = () => {
+  const navigate = useNavigate();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   // Handle submit function
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setError('');
-
-    // Basic validation
-    if (!title || !company || !location || !jobType || !deadline || !experience) {
-      setError('Please fill out all fields.');
-      return;
+  const onSubmit = async (data) => {
+   
+    let res = await createJobRequest(data);
+    if(res){
+      successMsg("Created a new Job!");
+      navigate('/jobs/read')
     }
-
-    const jobData = {
-      title,
-      company,
-      location,
-      jobType,
-      deadline,
-      experience,
-    };
-
-    // Call the onSubmit prop with jobData
-    onSubmit(jobData);
+    else{
+      errorMsg("Something went wrong!");
+    }
   };
 
   return (
@@ -40,86 +32,127 @@ const JobCreate = ({ onSubmit }) => {
         <h1 className="sm:text-2xl text-center mb-4-10 sm:mt-0 text-xl font-semibold text-gray-600">
           Create Job Post
         </h1>
-        {error && <p className="text-red-500">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="title">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="title"
+            >
               Job Title
             </label>
             <input
               type="text"
               id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              {...register("title", { required: true })}
+              aria-invalid={errors.title ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
-              required
             />
+            {errors.title?.type === "required" && (
+              <p role="alert" className="text-red-600 text-sm mt-1">
+                Title is required
+              </p>
+            )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="company">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="company"
+            >
               Company Name
             </label>
             <input
               type="text"
               id="company"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
+              {...register("company", { required: true })}
+              aria-invalid={errors.company ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
-              required
             />
+            {errors.company?.type === "required" && (
+              <p role="alert" className="text-red-600 text-sm mt-1">
+                Company is required
+              </p>
+            )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="location">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="location"
+            >
               Location
             </label>
             <input
               type="text"
               id="location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              {...register("location", { required: true })}
+              aria-invalid={errors.location ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
-              required
             />
+            {errors.location?.type === "required" && (
+              <p role="alert" className="text-red-600 text-sm mt-1">
+                Location is required
+              </p>
+            )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="jobType">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="jobType"
+            >
               Job Type
             </label>
             <input
               type="text"
               id="jobType"
-              value={jobType}
-              onChange={(e) => setJobType(e.target.value)}
+              {...register("jobType", { required: true })}
+              aria-invalid={errors.jobType ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
-              required
             />
+            {errors.jobType?.type === "required" && (
+              <p role="alert" className="text-red-600 text-sm mt-1">
+                Job Type is required
+              </p>
+            )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="deadline">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="deadline"
+            >
               Application Deadline
             </label>
             <input
               type="date"
               id="deadline"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
+              {...register("deadline", { required: true })}
+              aria-invalid={errors.deadline ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
-              required
             />
+            {errors.deadline?.type === "required" && (
+              <p role="alert" className="text-red-600 text-sm mt-1">
+                Deadline is required
+              </p>
+            )}
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="experience">
+            <label
+              className="block text-sm font-medium text-gray-700"
+              htmlFor="experience"
+            >
               Experience
             </label>
             <input
               type="text"
               id="experience"
-              value={experience}
-              onChange={(e) => setExperience(e.target.value)}
+              {...register("experience", { required: true })}
+              aria-invalid={errors.experience ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
-              required
               placeholder="e.g., 3 years, 5-7 years"
             />
+            {errors.experience?.type === "required" && (
+              <p role="alert" className="text-red-600 text-sm mt-1">
+                Experience is required
+              </p>
+            )}
           </div>
           <button
             type="submit"

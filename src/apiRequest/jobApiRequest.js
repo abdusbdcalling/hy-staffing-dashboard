@@ -33,3 +33,19 @@ export async function removeJobRequest(id){
     errorMsg(e.response.status);
   }
 }
+
+export async  function createJobRequest(postData){
+   try{
+     let res = await axios.post('/api/v1/createJob',postData);
+     console.log(res);
+     if(res.status === 201){
+      return true
+     }
+     else{
+      return false;
+     }
+   }
+   catch(e){
+    return false;
+   }
+}

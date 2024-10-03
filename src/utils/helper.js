@@ -47,6 +47,7 @@ class helper {
   getUserInfo() {
     return JSON.parse(localStorage.getItem("userInfo"));
   }
+
 }
 
 export const {
@@ -58,4 +59,5 @@ export const {
   getRole,
   setUserInfo,
   getUserInfo,
+  removeSession
 } = new helper();
