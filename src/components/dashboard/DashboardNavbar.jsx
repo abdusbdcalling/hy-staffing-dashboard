@@ -6,6 +6,7 @@ import { FaUserCircle } from 'react-icons/fa';
 
 function DashboardNavbar({ toggleSidebar }) {
   const [isProfileOpen, setProfileOpen] = useState(false);
+  const [info,setInfo] = useState([]);
 
   const handleDropDown = () => {
     setProfileOpen(!isProfileOpen);

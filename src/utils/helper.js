@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import CryptoJS from "crypto-js";
 
 class helper {
   errorMsg(status) {
@@ -28,7 +29,15 @@ class helper {
   }
 
   getRole() {
-    return localStorage.getItem("role");
+    const encryptedRole = localStorage.getItem("role");
+    if (encryptedRole) {
+      const decryptedRole = CryptoJS.AES.decrypt(
+        encryptedRole,
+        import.meta.env.VITE_CRYPTO_SECRET_KEY
+      ).toString(CryptoJS.enc.Utf8);
+      return JSON.parse(decryptedRole);
+    }
+    return null;
   }
 
   setUserInfo(details) {
@@ -40,4 +49,13 @@ class helper {
   }
 }
 
-export const { errorMsg,successMsg,setToken,getToken,setRole,getRole,setUserInfo,getUserInfo } = new helper();
+export const {
+  errorMsg,
+  successMsg,
+  setToken,
+  getToken,
+  setRole,
+  getRole,
+  setUserInfo,
+  getUserInfo,
+} = new helper();

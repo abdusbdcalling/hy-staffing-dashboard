@@ -13,14 +13,14 @@ import { MdWorkOutline } from "react-icons/md";
 import JobsNavbar from "./JobsNavbar";
 import { HiOutlineUsers } from "react-icons/hi";
 import { TbNavigationCog } from "react-icons/tb";
-import { getUserInfo } from "../../utils/helper";
+import { getRole } from "../../utils/helper";
 
 function DashboardSidebar({ toggleSidebar }) {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [isJobsOpen, setJobsOpen] = useState(false);
 
-  const {role} = getUserInfo();
-  console.log(role);
+  let role = getRole();
+ 
 
   const toggleSettings = () => {
     setSettingsOpen(!isSettingsOpen);
