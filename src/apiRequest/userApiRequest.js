@@ -1,5 +1,5 @@
 import axios from "axios";
-import { errorMsg, setRole } from "../utils/helper";
+import { errorMsg, setRole, setUserInfo } from "../utils/helper";
 import CryptoJS from "crypto-js";
 
 export async function loginRequest(postData) {
@@ -14,6 +14,7 @@ export async function loginRequest(postData) {
       ).toString();
 
       setRole(ciphertext);
+      setUserInfo()
       return true;
     } else {
       errorMsg("Something went wrong!");
@@ -35,5 +36,41 @@ export async function userListRequest(pageNo, perPage) {
     }
   } catch (e) {
     errorMsg(e.response.status);
+  }
+}
+
+
+export async function userInfoRequest(){
+  try{
+    let res = await axios.get('/api/v1/userInfo');
+    let data = res.data.data;
+    if(res.status === 200){
+     return data;
+    }
+    else{
+      errorMsg("Something went wrong!");
+     
+    }
+  }
+  catch(e){
+   console.log(e);
+  }
+}
+
+
+
+export async function logoutRequest(){
+  try{
+    let res = await axios.post('/api/v1/logout');
+    if(res.status === 200){
+      return true;
+    }
+    else{
+      return false
+    }
+  }
+  catch(e){
+    errorMsg("Internal error!!")
+      return false;
   }
 }
