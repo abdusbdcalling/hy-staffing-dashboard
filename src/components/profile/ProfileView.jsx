@@ -1,50 +1,52 @@
-import Button from './Button';
-import { FaRegUser } from 'react-icons/fa6';
-import { IoCallOutline } from 'react-icons/io5';
-import { MdOutlineAlternateEmail } from 'react-icons/md';
-import { MdWorkOutline } from 'react-icons/md';
-import useInfo from '../../hooks/useInfo';
+import { FaEnvelope, FaPhone, FaUser } from "react-icons/fa"; // Import icons
+import useInfo from "../../hooks/useInfo";
 
-const ProfileView = ({ profile, onEdit }) => {
-  const { data, loading, error } = useInfo();
-  console.log(data[0]?.profile?.avatar);
+const ProfileView = () => {
+
+  const {data,loading} = useInfo();
+  if(loading){
+    return <h1>Loading......</h1>
+  }
+
   return (
-    <div className="p-4 sm:max-w-4xl bg-white shadow rounded-[8px]">
-      <div className="sm:flex gap-[60px] justify-start items-center p-10 grid grid-cols-2 divide-x-2">
-        <div className="sm:mb-0 mb-10 ">
-          <img
-            src={data[0]?.profile?.avatar}
-            className="w-[200px] h-[200px] rounded-full "
-            alt="profile image"
-          />
+    <section className="max-w-sm w-full flex items-center justify-center font-serif">
+     <div className="max-w-md w-full  mx-auto bg-white shadow rounded-lg overflow-hidden">
+      {/* Profile Image */}
+      <div className="flex justify-center  p-4 bg-gradient-to-r from-red-500 to-rose-500">
+        <img
+          className="h-32 w-32 rounded-full border-4 border-white shadow-lg object-cover"
+          src={data[0]?.profile.avatar}
+          alt="Profile"
+        />
+      </div>
+
+      {/* Bio */}
+      <div className="p-4">
+        <p className="text-gray-600 text-center italic mb-4">{data[0]?.profile.bio}</p>
+      </div>
+
+      {/* Profile Info */}
+      <div className="p-6">
+        {/* Name */}
+        <div className="flex items-center mb-4">
+          <FaUser className="text-red-500 mr-2" />
+          <h2 className="text-xl font-semibold text-gray-800">{data[0]?.profile.firstName}{""}{data[0]?.profile.lastName}</h2>
         </div>
-        <div className="pl-[60px] ">
-          <div className="space-y-1">
-            <div className="flex gap-2 items-center text-lg">
-              <FaRegUser />
-              <p>{data[0]?.profile?.firstName} {data[0]?.profile?.lastName}</p>
-            </div>
-            <div className="flex gap-2 items-center text-lg">
-              <IoCallOutline />
-              <p>{data[0]?.profile?.mobile}</p>
-            </div>
-            <div className="flex gap-2 items-center text-lg">
-              <MdOutlineAlternateEmail />
-              <p>{data[0]?.email}</p>
-            </div>
-            <div className="flex gap-2 items-center text-lg">
-              <MdWorkOutline />
-              <p>{profile.bio}</p>
-            </div>
-          </div>
-          <div className="mt-4">
-            <Button onClick={onEdit} className="bg-[#E5383B] text-lg">
-              Edit Profile
-            </Button>
-          </div>
+
+        {/* Email */}
+        <div className="flex items-center mb-4">
+          <FaEnvelope className="text-red-500 mr-2" />
+          <span className="text-gray-600">{data[0]?.email}</span>
+        </div>
+
+        {/* Mobile */}
+        <div className="flex items-center mb-4">
+          <FaPhone className="text-red-500 mr-2" />
+          <span className="text-gray-600">{data[0]?.profile.mobile}</span>
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

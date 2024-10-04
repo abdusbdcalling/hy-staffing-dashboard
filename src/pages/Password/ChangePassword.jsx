@@ -1,31 +1,28 @@
 import { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { errorMsg, successMsg } from '../../utils/helper';
+import { updatePasswordRequest } from '../../apiRequest/userApiRequest';
 
 const ChangePassword = () => {
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess('');
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-    if (newPassword !== confirmPassword) {
-      setError('New passwords do not match.');
-      return;
+  const onSubmit = async(data) => {
+    if(data.newPassword !== data.confirmPassword){
+      errorMsg("Password didn't matched!")
     }
-
-    try {
-      // Call API to change password
-      // For example:
-      // await changePasswordApi(currentPassword, newPassword);
-
-      // Set success message
-      setSuccess('Password changed successfully.');
-    } catch (error) {
-      setError('Failed to change password. Please try again.');
+    else{
+     let res = await updatePasswordRequest(data);
+     if(res){
+      successMsg("Password updated successfully!")
+     }
+     else{
+      errorMsg("Please Sign in and try again!")
+     }
     }
   };
 
@@ -35,19 +32,21 @@ const ChangePassword = () => {
         <h2 className="sm:text-2xl sm:mt-0 mt-2 mb-4 text-center text-xl font-semibold text-gray-600">
           Change Password
         </h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="currentPassword">
               Current Password
             </label>
             <input
               type="password"
-              id="currentPassword"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
+              {...register("currentPassword", { required: true })}
+                  aria-invalid={errors.currentPassword ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
               required
             />
+             {errors.currentPassword?.type === "required" && (
+                  <p role="alert" className="text-red-600 text-sm mt-1">Current Password is required</p>
+                )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="newPassword">
@@ -55,12 +54,14 @@ const ChangePassword = () => {
             </label>
             <input
               type="password"
-              id="newPassword"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              {...register("newPassword", { required: true })}
+                  aria-invalid={errors.newPassword ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
               required
             />
+              {errors.newPassword?.type === "required" && (
+                  <p role="alert" className="text-red-600 text-sm mt-1">New Password is required</p>
+                )}
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="confirmPassword">
@@ -68,15 +69,15 @@ const ChangePassword = () => {
             </label>
             <input
               type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              {...register("confirmPassword", { required: true })}
+                  aria-invalid={errors.confirmPassword ? "true" : "false"}
               className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
               required
             />
+             {errors.confirmPassword?.type === "required" && (
+                  <p role="alert" className="text-red-600 text-sm mt-1">Confirm Password is required</p>
+                )}
           </div>
-          {error && <p className="text-red-500">{error}</p>}
-          {success && <p className="text-green-500">{success}</p>}
           <button
             type="submit"
             className="w-full py-2 px-4 bg-[#E5383B] text-white font-bold rounded-md hover:bg-blue-700"

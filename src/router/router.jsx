@@ -8,6 +8,7 @@ import ChangePassword from '../pages/Password/ChangePassword';
 import JobCreate from '../pages/Jobs/JobCreate';
 import AllJobs from '../pages/Jobs/AllJobs';
 import Users from '../pages/Users/Users';
+import Otp from '../pages/Otp/Otp';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '/otp-verification',
+    element: <Otp />,
   },
 ]);
 
